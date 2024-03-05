@@ -9,7 +9,8 @@ import { ReportMiddleware } from './middleware/report.middleware';
 import * as orm from '@midwayjs/orm';
 import * as crossDomain from '@midwayjs/cross-domain';
 import * as upload from '@midwayjs/upload';
-
+import { NotFoundFilter } from './filter/notfound.filter';
+import { ValidaterFilter } from './filter/validater.filter';
 import 'tsconfig-paths/register';
 
 @Configuration({
@@ -39,6 +40,7 @@ export class MainConfiguration {
   app: koa.Application;
 
   async onReady() {
+    this.app.useFilter([NotFoundFilter, ValidaterFilter]);
     // add middleware
     this.app.useMiddleware([ReportMiddleware]);
     // add filter
