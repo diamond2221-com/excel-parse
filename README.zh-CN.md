@@ -4,7 +4,7 @@
 
 ```bash
 $ yarn
-$ yarn dev:weapp
+$ yarn dev:mp-weixin
 ```
 ### Server 本地开发
 
