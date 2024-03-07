@@ -1,7 +1,15 @@
 import { MedicalExpenses } from '@/entity/MedicalExpenses';
 import { EResponse } from '@/enums/response';
 import { ResponseMessage } from '@/utils/response';
-import { Controller, File, Post, Provide } from '@midwayjs/decorator';
+import {
+  ALL,
+  Controller,
+  File,
+  Get,
+  Query,
+  Post,
+  Provide,
+} from '@midwayjs/decorator';
 import { InjectEntityModel } from '@midwayjs/orm';
 import { Repository } from 'typeorm';
 import * as XLSX from 'xlsx';
@@ -51,5 +59,14 @@ export default class XlsxController {
     );
 
     return new ResponseMessage(EResponse.SUCCESS, res);
+  }
+
+  @Get('/list')
+  async list(@Query(ALL) query: { month: string }) {
+    console.log('query', query);
+    const [res, count] = await this.MedicalExpenses.findAndCount({
+      where: { month: query.month || '' },
+    });
+    return new ResponseMessage(EResponse.SUCCESS, { rows: res, count, query });
   }
 }

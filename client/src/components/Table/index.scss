@@ -1,0 +1,92 @@
+$mainLightColor:rgba(32, 80, 162, 0.465);
+$mainBorderColor: #d3d3d3f1;
+
+.table-wrap {
+  width: 100%;
+  position: relative;
+  // min-height: 30vh;
+  .scroll-container {
+    border-bottom: 1px solid $mainBorderColor;
+  }
+  .table {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-width: 100%;
+    white-space: nowrap;
+    font-size: 24rpx;
+    @media (min-width < 481rpx) {
+      font-size: 14rpx !important;
+    }
+    .theader {
+      white-space: nowrap;
+      .th {
+        flex: 1;
+        display: inline-block;
+        box-sizing: border-box;
+        border: 1px solid $mainBorderColor;
+        border-left: none;
+        padding: 8rpx 0;
+        &:first-child {
+          border-left: 1px solid $mainBorderColor;
+        }
+        &.lfix,
+        &.rfix {
+          opacity: 0;
+        }
+        &.lfix + .th {
+          border-left: 1px solid $mainBorderColor;
+        }
+      }
+    }
+    .tbody {
+      .tr {
+        width: 100%;
+        box-sizing: border-box;
+        height: 56rpx;
+        .td {
+          flex: 1;
+          display: inline-block;
+          box-sizing: border-box;
+          border-bottom: 1px solid $mainBorderColor;
+          border-right: 1px solid $mainBorderColor;
+          padding: 8rpx 0;
+          height: 56rpx;
+          line-height: 40rpx;
+          &:first-child {
+            border-left: 1px solid $mainBorderColor;
+          }
+          &.lfix,
+          &.rfix {
+            opacity: 0;
+          }
+          &.lfix + .td {
+            border-left: 1px solid $mainBorderColor;
+          }
+        }
+      }
+    }
+  }
+
+  .fix-table-left,
+  .fix-table-right {
+    position: absolute;
+    top: 0;
+    bottom: 1px;
+    background-color: #fff;
+    min-width: 0;
+    box-sizing: border-box;
+    .theader {
+      color: white;
+      background-color: $mainLightColor;
+    }
+  }
+  .fix-table-left {
+    left: 0;
+    box-shadow: 4rpx 0 6rpx -2rpx rgba(0, 0, 0, 0.2);
+  }
+  .fix-table-right {
+    right: 0;
+    box-shadow: -4rpx 0 6rpx -2rpx rgba(0, 0, 0, 0.2);
+  }
+}
