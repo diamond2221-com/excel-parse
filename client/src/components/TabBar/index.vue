@@ -1,8 +1,15 @@
 <template>
 	<view class="tab">
 		<view v-for="(item, index) in list" :key="index" class="tab-item" @click="switchTab(item, index)">
-			<image class="tab_img" :src="currentIndex == index ? item.selectedIconPath : item.iconPath"></image>
-			<view class="tab_text" :style="{ color: currentIndex == index ? selectedColor : color }">{{ item.text }}
+			<image
+                class="tab_img"
+                :src="currentIndex == index ? item.selectedIconPath : item.iconPath"
+            />
+			<view
+                class="tab_text"
+                :style="{ color: currentIndex == index ? selectedColor : color }"
+            >
+                {{ item.text }}
 			</view>
 		</view>
 	</view>
@@ -10,6 +17,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from 'vue'
+import { onShow } from '@dcloudio/uni-app';
 
 const props = withDefaults(defineProps<{ selectedIndex: number }>(), {
     selectedIndex: 0
@@ -20,6 +28,9 @@ const selectedColor = ref("#00BAB2")
 const list = ref<any[]>([])
 const currentIndex = ref(0)
 
+onShow(() => {
+    currentIndex.value = props.selectedIndex;
+})
 onMounted(() => {
     currentIndex.value = props.selectedIndex;
     /**
@@ -75,11 +86,12 @@ onMounted(() => {
 function switchTab(item: any, index: number) {
     currentIndex.value = index;
     let url = item.pagePath;
-    uni.redirectTo({
+    uni.switchTab({
         url: url,
         success: () => {
             nextTick(() => {
                 console.log('success');
+                currentIndex.value = index;
             })
         }
     });
@@ -107,6 +119,7 @@ function switchTab(item: any, index: number) {
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        border-right: 1px solid #f0f0f0;
 
         .tab_img {
             width: 20px;

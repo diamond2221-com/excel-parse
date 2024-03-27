@@ -2,7 +2,7 @@
 import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
 onLaunch(() => {
   console.log("App Launch");
-  uni.setStorageSync('identify', 'tom')
+  uni.setStorageSync('identify', '123')
 });
 onShow(() => {
   console.log("App Show");

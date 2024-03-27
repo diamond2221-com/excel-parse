@@ -1,4 +1,27 @@
 {
+	"tabBar": {
+		"custom": true,
+		"list": [
+			{
+				"pagePath": "pages/supplier/reserve/index"
+			},
+			{
+				"pagePath": "pages/supplier/order/index"
+			},
+			{
+				"pagePath": "pages/supplier/personalCenter/index"
+			},
+			{
+				"pagePath": "pages/warehouse/reserveInfo/index"
+			},
+			{
+				"pagePath": "pages/warehouse/reserveOrder/index"
+			},
+			{
+				"pagePath": "pages/warehouse/warehouseCenter/index"
+			}
+		]
+	},
 	"pages": [
 		{
 			"path": "pages/supplier/reserve/index",
